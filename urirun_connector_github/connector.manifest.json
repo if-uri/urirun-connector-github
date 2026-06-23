@@ -43,9 +43,11 @@
     "github"
   ],
   "routes": [
-    "github://host/repo/command/clone",
     "github://host/package/command/install",
-    "github://host/repo/query/bindings"
+    "github://host/repo/command/clone",
+    "github://host/repo/command/pull",
+    "github://host/repo/query/bindings",
+    "github://host/repo/query/list"
   ],
   "examples": [
     {
@@ -63,5 +65,8 @@
         "repo": "if-uri/urirun-connector-llm"
       }
     }
+  ],
+  "adapterKinds": [
+    "local-function"
   ]
 }
