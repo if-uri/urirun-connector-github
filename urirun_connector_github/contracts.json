@@ -6,7 +6,7 @@
       "reversible": false,
       "inp": { "url": "?str", "dest": "?str", "branch": "?str", "depth": "?int" },
       "out": { "repo": "str", "url": "str", "existed": "bool" },
-      "errors": ["invalid-argument", "command-failed"],
+      "errors": ["precondition-unmet", "degraded-backend"],
       "examples": [
         {
           "payload": { "url": "https://github.com/if-uri/urirun.git" },
@@ -20,7 +20,7 @@
       "reversible": false,
       "inp": { "dest": "?str" },
       "out": { "repo": "str", "output": "str" },
-      "errors": ["invalid-argument", "command-failed"],
+      "errors": ["precondition-unmet", "degraded-backend"],
       "examples": [
         {
           "payload": { "dest": "/root/urirun" },
@@ -48,7 +48,7 @@
       "reversible": false,
       "inp": { "dest": "?str", "editable": "?bool", "no_deps": "?bool" },
       "out": { "installed": "str", "editable": "bool" },
-      "errors": ["invalid-argument", "command-failed"],
+      "errors": ["precondition-unmet", "degraded-backend"],
       "examples": [
         {
           "payload": { "dest": "/root/urirun" },
@@ -62,7 +62,7 @@
       "reversible": false,
       "inp": { "dest": "?str", "module": "?str" },
       "out": { "oneOf": [{ "module": "str" }, { "source": "str" }] },
-      "errors": ["invalid-argument", "command-failed"],
+      "errors": ["precondition-unmet", "degraded-backend"],
       "examples": [
         {
           "payload": { "module": "urirun" },
