@@ -1,0 +1,75 @@
+{
+  "contracts": {
+    "repo/command/clone": {
+      "version": "v1",
+      "effect": "command",
+      "reversible": false,
+      "inp": { "url": "?str", "dest": "?str", "branch": "?str", "depth": "?int" },
+      "out": { "repo": "str", "url": "str", "existed": "bool" },
+      "errors": ["invalid-argument", "command-failed"],
+      "examples": [
+        {
+          "payload": { "url": "https://github.com/if-uri/urirun.git" },
+          "result": { "ok": true, "repo": "/root/urirun", "url": "https://github.com/if-uri/urirun.git", "existed": false }
+        }
+      ]
+    },
+    "repo/command/pull": {
+      "version": "v1",
+      "effect": "command",
+      "reversible": false,
+      "inp": { "dest": "?str" },
+      "out": { "repo": "str", "output": "str" },
+      "errors": ["invalid-argument", "command-failed"],
+      "examples": [
+        {
+          "payload": { "dest": "/root/urirun" },
+          "result": { "ok": true, "repo": "/root/urirun", "output": "Already up to date." }
+        }
+      ]
+    },
+    "repo/query/list": {
+      "version": "v1",
+      "effect": "query",
+      "reversible": false,
+      "inp": { "root": "?str" },
+      "out": { "root": "str", "repos": "list", "count": "int" },
+      "errors": [],
+      "examples": [
+        {
+          "payload": {},
+          "result": { "ok": true, "root": "/root", "repos": [], "count": 0 }
+        }
+      ]
+    },
+    "package/command/install": {
+      "version": "v1",
+      "effect": "command",
+      "reversible": false,
+      "inp": { "dest": "?str", "editable": "?bool", "no_deps": "?bool" },
+      "out": { "installed": "str", "editable": "bool" },
+      "errors": ["invalid-argument", "command-failed"],
+      "examples": [
+        {
+          "payload": { "dest": "/root/urirun" },
+          "result": { "ok": true, "installed": "/root/urirun", "editable": true }
+        }
+      ]
+    },
+    "repo/query/bindings": {
+      "version": "v1",
+      "effect": "query",
+      "reversible": false,
+      "inp": { "dest": "?str", "module": "?str" },
+      "out": { "oneOf": [{ "module": "str" }, { "source": "str" }] },
+      "errors": ["invalid-argument", "command-failed"],
+      "examples": [
+        {
+          "payload": { "module": "urirun" },
+          "result": { "ok": true, "module": "urirun", "scheme": "urirun", "bindings": {} }
+        }
+      ]
+    }
+  },
+  "wires": []
+}
