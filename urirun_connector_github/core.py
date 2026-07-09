@@ -31,8 +31,10 @@ from typing import Any
 
 import urirun
 
+from . import _urirun_compat
+
 CONNECTOR_ID = "github"
-conn = urirun.connector(CONNECTOR_ID, scheme="github")
+conn = _urirun_compat.connector(CONNECTOR_ID, scheme="github")
 
 
 def _root() -> Path:
@@ -131,13 +133,32 @@ def repo_bindings(dest: str = "", module: str = "") -> dict[str, Any]:
 def urirun_bindings() -> dict[str, Any]:
     return conn.bindings()
 
+@conn.handler("github://host/doctor/query/report", isolated=True, meta={"label": "Connector readiness report"})
+def doctor() -> dict[str, Any]:
+    """Return a safe, read-only connector readiness report for CI smoke tests."""
+    return {
+        "ok": True,
+        "connector": CONNECTOR_ID,
+        "version": _connector_version(),
+        "status": "ready",
+    }
+
+
+def _connector_version() -> str:
+    try:
+        from importlib.metadata import version
+
+        return version("urirun-connector-github")
+    except Exception:
+        return "0.1.0"
+
 
 def connector_manifest() -> dict[str, Any]:
-    return conn.manifest(urirun.load_manifest(__package__))
+    return conn.manifest(_urirun_compat.load_manifest(__package__))
 
 
 def main(argv: list[str] | None = None) -> int:
-    return conn.cli(argv, manifest_prose=urirun.load_manifest(__package__))
+    return conn.cli(argv, manifest_prose=_urirun_compat.load_manifest(__package__))
 
 
 if __name__ == "__main__":
