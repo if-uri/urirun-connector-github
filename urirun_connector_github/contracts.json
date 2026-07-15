@@ -34,7 +34,7 @@
       "inp": {},
       "out": { "connector": "str", "version": "str", "status": "str" },
       "errors": [],
-      "examples": [{ "payload": {}, "result": { "ok": true, "connector": "github", "version": "0.1.0", "status": "ready" } }]
+      "examples": [{ "payload": {}, "result": { "ok": true, "connector": "github", "version": "0.2.0", "status": "ready" } }]
     },
     "repo/command/clone": {
       "version": "v1",

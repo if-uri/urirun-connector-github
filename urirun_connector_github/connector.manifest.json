@@ -23,7 +23,7 @@
   ],
   "install": {
     "mode": "urirun-extra",
-    "pipSpec": "urirun-connector-github @ git+https://github.com/urirun-connectors/urirun-connector-github.git@v0.1.0"
+    "pipSpec": "urirun-connector-github @ git+https://github.com/urirun-connectors/urirun-connector-github.git@v0.2.0"
   },
   "provenance": "verified",
   "publisher": {
